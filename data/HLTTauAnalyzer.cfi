@@ -1,0 +1,38 @@
+
+module hltTauAnalyzer = HLTTauAnalyzer {
+
+ int32     debug                = 1000
+
+#  Max delta R between generator and L1/HLT candidates
+ double    mcDeltaRTau          = 0.5
+ double    mcDeltaRLep          = 0.5
+ 
+#  Monte-Carlo products from HLTTauMcInfo producer
+ VInputTag mcProducts           = { TauMcInfoProducer:Jets , TauMcInfoProducer:Leptons , TauMcInfoProducer:Neutrina }
+ 
+#  Level 1 trigger bit: "L1_IsoEG10_TauJet20" "L1_Mu5_TauJet20" "L1_SingleTauJet80" "L1_DoubleTauJet40" "L1_TauJet30_ETIM30"
+ string    l1TauTrigger         = ""
+
+# Level 2 MET
+    InputTag HLTMETFilter = hlt1METSingleTau
+    bool UsingMET = false
+
+# Number of tau candidates to be checked at every step of the trigger path 
+# 1 = singleTau, singleTauMET, lepton+tau, 2 = double tau
+ int32     nbLeps               = 0
+ int32     nbTaus               = 1
+  
+#  Products along the HLT paths
+ VInputTag hltLeptonSrc         = { }
+ 
+ VInputTag l2TauJets            = { }
+ VInputTag l2TauJetsFiltered    = { }
+ VInputTag l25TauJets           = { }
+ VInputTag l3TauJets            = { }
+ 
+#  Output ROOT file and text file
+ untracked string rootFile      = "HLTAnalyzer.root"
+ untracked string logFile       = "HLTAnalyzer.log"
+#  Switch for signal/background datasets
+ bool      isSignal             = true
+}
