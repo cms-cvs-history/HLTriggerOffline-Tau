@@ -1,7 +1,7 @@
 module TauMcInfoProducer = HLTTauMcInfo{
  InputTag GenParticles = source
-// int32    BosonPID     = 23 //(Z)
- int32    BosonPID     = 37 //(H+)
+ int32    BosonPID     = 23 //(Z)
+// int32    BosonPID     = 37 //(H+)
 // int32    BosonPID     = 35 //(H0)
 // int32    BosonPID     = 36 //(A0)
 double EtaMax = 2.5
