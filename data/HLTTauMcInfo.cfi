@@ -6,4 +6,7 @@ module TauMcInfoProducer = HLTTauMcInfo{
 // int32    BosonPID     = 36 //(A0)
 double EtaMax = 2.5
 double PtMin = 10.
+bool UsePFTauMatching = true
+InputTag PFTauProducer = pfRecoTauProducer
+InputTag PFTauDiscriminator = pfRecoTauDiscriminationByIsolation
 }
