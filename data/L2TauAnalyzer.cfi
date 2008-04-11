@@ -1,0 +1,11 @@
+module L2TauAnalyzer =  L2TauAnalyzer
+{
+	 string outputFileName = "output_L2.root"
+          InputTag L2InfoAssociationInput = doubleTauL2Producer:L2TauIsolationInfoAssociator
+          bool IsSignal = true
+          InputTag MatchedCollection = TauMcInfoProducer:Jets
+          InputTag GenJetCollection  = iterativeCone5GenJetsNoNuBSM
+
+
+
+}
