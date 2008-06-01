@@ -1,6 +1,6 @@
 module HLTTauValidation = HLTTauValidation {
 	InputTag triggerEventObject = hltTriggerSummaryRAW
-	InputTag refCollection     = TauMcInfoProducer:Jets
+	InputTag refCollection      = TauRefCombiner:GoodTaus
 	string   TriggerTag         = "PutAnyTagHere" 
 	bool     DoReferenceAnalysis= true
 	int32    NTriggeredTaus     = 2	
