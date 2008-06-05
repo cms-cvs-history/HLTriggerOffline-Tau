@@ -4,6 +4,7 @@ InputTag MatchedCollection     =  TauRefCombiner:GoodTaus
 int32	 MatchLevel            =  1
 double   MatchDeltaRMC         =  0.15
 double   MatchDeltaRL1         =  0.5
+string   TriggerTag            =  "L2Plots"
 string   OutputFileName        =  "L2Validation.root"
 InputTag L1TauTrigger          = hltDoubleTauL1SeedFilter
 

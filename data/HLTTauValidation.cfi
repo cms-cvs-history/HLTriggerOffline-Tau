@@ -1,16 +1,20 @@
 module HLTTauValidation = HLTTauValidation {
-	InputTag triggerEventObject = hltTriggerSummaryRAW
-	InputTag refCollection      = TauRefCombiner:GoodTaus
-	string   TriggerTag         = "PutAnyTagHere" 
-	bool     DoReferenceAnalysis= true
-	int32    NTriggeredTaus     = 2	
-	string   L1SeedFilter       = "hltDoubleTauL1SeedFilter"
-	string   L2EcalIsolFilter   = "hltFilterDoubleTauEcalIsolation"
-	string   L25PixelIsolFilter = "hltFilterL25PixelTau"
-	string   L3SiliconIsolFilter= ""
-	double   MatchDeltaRL1      = 0.5
-	double   MatchDeltaRHLT     = 0.3
-	string   OutputFileName     ="HLTTauValidation.root"	    
-	string   LogFileName     ="HLTTauValidation.log"	    
+untracked	InputTag triggerEventObject = hltTriggerSummaryRAW
+untracked	InputTag refTauCollection      = TauRefCombiner:GoodTaus
+untracked	InputTag refLeptonCollection      = NOTHING
+untracked	string   TriggerTag         = "PutAnyTagHere" 
+untracked	bool     DoReferenceAnalysis= true
+untracked	uint32    NTriggeredTaus     = 2	
+untracked	uint32    NTriggeredLeptons  = 0	
+untracked	string   L1SeedFilter       = "hltDoubleTauL1SeedFilter"
+untracked	string   L2EcalIsolFilter   = "hltFilterDoubleTauEcalIsolation"
+untracked	string   L25PixelIsolFilter = "hltFilterL25PixelTau"
+untracked	string   L3SiliconIsolFilter= ""
+untracked	string   ElectronFilter     = ""
+untracked	string   MuonFilter         = ""
+untracked	double   MatchDeltaRL1      = 0.5
+untracked	double   MatchDeltaRHLT     = 0.3
+untracked	string   OutputFileName     ="HLTTauValidation.root"	    
+untracked	string   LogFileName     ="HLTTauValidation.log"	    
 
 }
