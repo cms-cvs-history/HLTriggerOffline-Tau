@@ -7,7 +7,7 @@ untracked PSet PFTaus = {
 	untracked bool doPFTaus                 = true
 	untracked InputTag PFTauProducer        = pfRecoTauProducer
 	untracked InputTag PFTauDiscriminator   = pfRecoTauDiscriminationByIsolation
-	untracked double   ptMIn                = 15.
+	untracked double   ptMin                = 15.
 }
 
 
@@ -48,8 +48,8 @@ untracked PSet MC  = {
 	untracked bool     doMC                 = true	
 	untracked InputTag GenParticles         = source
 	untracked int32 BosonID                 = 23
-	untracked  double ptMinTau              = 15.
-	untracked  double ptMinMuon             = 2.
+	untracked  double ptMinTau              = 10.
+	untracked  double ptMinMuon             = 3.
 	untracked  double ptMinElectron         = 5.
 
 }

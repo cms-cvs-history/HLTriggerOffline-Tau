@@ -13,6 +13,6 @@ module L25TauValidation = L25TauValidation {
    										   
    bool Signal = true								   
    double MCMatching = 0.30 
-    							   
+   string TriggerTag =  "L25Plots"	    							   
    string OutputFileName = "test.root"						   
 }
