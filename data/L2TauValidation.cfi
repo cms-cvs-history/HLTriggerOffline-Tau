@@ -1,6 +1,7 @@
 module L2TauValidation = L2TauValidation {
 InputTag L2InfoAssociationInput=  hltL2DoubleTauIsolationProducer:L2TauIsolationInfoAssociator
 InputTag MatchedCollection     =  TauRefCombiner:GoodTaus
+InputTag MET                   = hltMET
 int32	 MatchLevel            =  1
 double   MatchDeltaRMC         =  0.15
 double   MatchDeltaRL1         =  0.5
