@@ -1,0 +1,6 @@
+include "HLTriggerOffline/Tau/data/HLTTauRefInfo.cfi"
+
+module elecID = eidCutBased from "RecoEgamma/ElectronIdentification/data/electronIdCutBased.cfi"
+replace elecID.electronQuality="robust" # "tight", "loose"
+module elecIDext = eidCutBasedExt from "RecoEgamma/ElectronIdentification/data/electronIdCutBasedExt.cfi" 
+#path eID = {elecID&elecIDext} ### ELECTRON ID CHANGED IN 210, NEED TO FIX
