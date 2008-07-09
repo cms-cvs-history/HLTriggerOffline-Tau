@@ -5,6 +5,7 @@
   double genEtaAcc = 2.5
   double genEtAcc = 10.
   string outputFile = "ElectronOfETauDQMoutput.root"
+  string triggerName = "ETau"
   VPSet filters = {
    { InputTag  HLTCollectionLabels = hltLevel1GTSeedElectronTau::HLT
      uint32    theHLTOutputTypes   = 83
