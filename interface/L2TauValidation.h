@@ -1,6 +1,7 @@
 // Original Author:  Michail Bachtis
-// Created:  Sun Jan 20 20:10:02 CST 2008
+//         Created:  Sun Jan 20 20:10:02 CST 2008
 // University of Wisconsin-Madison
+
 
 // system include files
 #include <memory>
@@ -53,22 +54,21 @@ class L2TauValidation : public edm::EDAnalyzer {
    
       //Parameters to read
       edm::InputTag     l2TauInfoAssoc_; //Path to analyze
-      std::string triggerTag_;//tag for dqm flder
-      edm::InputTag     l2Isolated_; //Path to analyze
       edm::InputTag     mcColl_;         // input products from HLTMcInfo
+      edm::InputTag     l1taus_;         //Handle to L1 Seed
       edm::InputTag     met_;             //Handle to missing Et 
       //Select if you want match or not
       int matchLevel_;
       double matchDeltaRMC_;
+      double matchDeltaRL1_;
       
+      //Tag to save in DQM File
+      std::string triggerTag_;
       
       //Output file
       std::string outFile_;
       
-      //Histogram Limits
-      double EtMin_;
-      double EtMax_;
-      int NBins_;
+      std::vector<double> cuts_;
 
       //Monitor elements main
       MonitorElement* jetEt;
@@ -86,9 +86,9 @@ class L2TauValidation : public edm::EDAnalyzer {
       MonitorElement* EtEff;
       MonitorElement* MET;
 
-      bool matchJet(const reco::Jet&,const reco::CaloJetCollection&);//See if this Jet Is Matched
+     
       bool match(const reco::Jet&,const LVColl&);//See if this Jet Is Matched
-
+      bool matchL1(const reco::Jet&,std::vector<l1extra::L1JetParticleRef>&);//See if this Jet Is Matched to L1
 };
 
 

@@ -13,7 +13,7 @@
 //
 // Original Author:  Simone Gennai/Ricardo Vasquez Sierra
 //         Created:  Wed Apr 12 11:12:49 CEST 2006
-// $Id: HLTTauL25Validation.cc,v 1.3 2008/06/11 12:21:56 bachtis Exp $
+// $Id: HLTTauL25Validation.cc,v 1.1 2008/01/18 15:46:00 gennai Exp $
 //
 //
 // user include files
@@ -148,7 +148,7 @@ void HLTTauL25Validation::analyze(const edm::Event& iEvent, const edm::EventSetu
   using namespace edm;
   using namespace reco;
   numEvents_++;
-  double  matching_criteria  =0;
+  double  matching_criteria;
   //  std::cout << "--------------------------------------------------------------"<<endl;
   //std::cout << " RunNumber: " << iEvent.id().run() << ", EventNumber: " << iEvent.id().event() << std:: endl;
   //std::cout << "Event number: " << ++numEvents_ << endl;
@@ -454,11 +454,11 @@ std::vector<TLorentzVector> HLTTauL25Validation::getVectorOfVisibleTauJets(const
     
     std::vector<LV>::const_iterator myVec = McInfo->begin();
     
-    for(size_t it =0; it < McInfo->size();it++){
+    for(int it =0; it < McInfo->size();it++){
       LV tauRef = (*McInfo)[it];
       tmpvec.push_back(TLorentzVector((tauRef).Px(),(tauRef).Py(),(tauRef).Pz(),(tauRef).E()));
     }
-    for(size_t i=0;i<tmpvec.size();i++){
+    for(int i=0;i<tmpvec.size();i++){
       ptTauMC_->Fill(tmpvec[i].Perp());
       etaTauMC_->Fill(tmpvec[i].Eta());
       phiTauMC_->Fill(tmpvec[i].Phi());

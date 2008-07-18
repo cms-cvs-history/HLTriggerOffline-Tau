@@ -27,8 +27,6 @@ bachtis@hep.wisc.edu
 typedef math::XYZTLorentzVectorD   LV;
 typedef std::vector<LV>            LVColl;
 
-
-
 class HLTTauValidation : public edm::EDAnalyzer {
   
  public:
@@ -81,21 +79,10 @@ class HLTTauValidation : public edm::EDAnalyzer {
   //MonitorElements
 
   /*Trigger Bits for Tau and Reference Trigger*/
-  MonitorElement *l1eteff;
-  MonitorElement *l2eteff;
-  MonitorElement *l25eteff;
-  MonitorElement *l3eteff;
-
-  MonitorElement *refEt;
-  MonitorElement *refEta;
-
-
-
-  MonitorElement *l1etaeff;
-  MonitorElement *l2etaeff;
-  MonitorElement *l25etaeff;
-  MonitorElement *l3etaeff;
- 
+  MonitorElement *triggerBits_Tau;
+  MonitorElement *triggerBits_Ref;
+  MonitorElement *etVsTriggerPath_Tau;
+  MonitorElement *etVsTriggerPath_Ref;
 
   //Define Numbers 
   int NRefEvents;

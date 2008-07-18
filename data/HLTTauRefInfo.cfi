@@ -25,15 +25,6 @@ untracked PSet Electrons = {
 	untracked bool doElectrons              = true
 	untracked InputTag ElectronCollection   = pixelMatchGsfElectrons
 	untracked double ptMin		        = 10.
-        untracked InputTag IdCollection         = elecIDext
-        untracked InputTag TrackCollection      = generalTracks
-        untracked double ptMinTrack             = 1.5
-        untracked bool   doID                   = false
-        untracked bool   doTrackIso             = true
-        untracked double lipMinTrack            = 0.2
-        untracked double InnerConeDR            = 0.02
-        untracked double OuterConeDR            = 0.6
-        untracked double MaxIsoVar              = 0.02
 }
 
 

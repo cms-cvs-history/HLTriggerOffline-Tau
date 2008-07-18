@@ -1,126 +1,141 @@
-run(string fname1,string fname2,string v1,string v2,bool hasL3)
+run(string fname,string ref = "MC")
 {
-  L2Val(fname1,fname2,v1,v2,"DQMData/L2");
-  L25Val(fname1,fname2,v1,v2,"DQMData/L25");
-  if(hasL3)
-  L3Val(fname1,fname2,v1,v2,"DQMData/L3");
-
+  TCanvas *l2 = new TCanvas("l2","L@ Validation");
+  L2Val(fname,"DQMData/L2ValidationRefTo"+ref,kBlue,"HIST",l2);
+  TCanvas *l25 = new TCanvas("l25","l25 Validation");
+  L25Val(fname,"DQMData/L25ValidationRefTo"+ref,kBlue,"HIST",l25);
 
 
 }
-
-
-L2Val(string fname1,string fname2,string v1,string v2,string folder)
+overlay(string fname,string ref = "MC",Color_t col)
 {
-
-  GetHistos(fname1,fname2,v1,v2,folder,"L2tauCandEt","L2 jet E_{t}","n. #tau cands."," L2 jet E_{t}",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L2tauCandEta","L2 jet #eta","n. #tau cands."," L2 jet #eta",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L2ecalIsolEt","L2 ECAL Isol. E_{t}","n. #tau cands.","ECAL #Sigma E_{t} in annulus",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L2towerIsolEt","L2 Tower isol E_{t}","n. #tau cands.","Tower #Sigma E_{t} in annulus",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L2nClusters","L2 Number of  Clusters","n. #tau cands.","Number of clusters",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L2clusterEtaRMS","L2 Cluster #eta RMS","n. #tau cands.","Cluster #eta RMS",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L2clusterPhiRMS","L2 Cluster #phi RMS","n. #tau cands.","Cluster #phi RMS",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L2clusterDeltaRRMS","L2 Cluster #DeltaR RMS","n. #tau cands.","Cluster #DeltaR RMS",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"MET","MET [GeV]","n. events","Missing E_{t}",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L2EtEff","L2 Reco Jet E_{t} [GeV]","Efficiency","L2 Efficiency vs E_{t}",0,true );
-
-
-
-
+  L2Val(fname,"DQMData/L2ValidationRefTo"+ref,col,"SAME",l2);
+  L25Val(fname,"DQMData/L25ValidationRefTo"+ref,col,"SAME",l25);
 }
 
-L25Val(string fname1,string fname2,string v1,string v2,string folder)
+
+
+L2Val(string fname,string folder,Color_t color,char* opt = "",TCanvas *c)
 {
+  if(opt ==""||opt =="HIST")
+    c->Divide(3,3);
 
-  GetHistos(fname1,fname2,v1,v2,folder,"L25jetEt","L25 Jet E_{t} [GeV]","n. #tau cands.","L25 Jet E_{t} [GeV]",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L25jetEta","L25 Jet #eta","n. #tau cands.","L25 Jet #eta",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L25EtEff","L25 Reco Jet E_{t} [GeV]","Efficiency","L25 Efficiency vs E_{t}",0,true );
-  GetHistos(fname1,fname2,v1,v2,folder,"L25EtaEff","L25 Efficiency vs #eta","n. #tau cands.","Reco Jet #eta",0,true );
-  GetHistos(fname1,fname2,v1,v2,folder,"L25nPxlTrksInJet","L25 Number of Pixel Tracks","n. #tau cands.","# Pixel Tracks in L25 Jet",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L25nQPxlTrksInJet","L25 Number of Q Pixel Tracks","n. #tau cands.","# Quality Pixel Tracks in L25 Jet",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L25signalLeadTrkPt","L25 Lead Track P_{t}[GeV]","n. #tau cands.","Lead Track P_{t} [GeV]",0,false );
-  
+  c->cd(1);
+  GetHisto(fname, folder,"ecalIsolEt",color,opt,"ECAL Isol E_{t}");
+  c->cd(2);
+  GetHisto(fname, folder,"nClusters",color,opt,"N Clusters");
+  c->cd(3);
+  GetHisto(fname, folder,"clusterEtaRMS",color,opt,"Cluster #eta RMS");
+  c->cd(4);
+  GetHisto(fname, folder,"clusterPhiRMS",color,opt,"Cluster #phi RMS");
+  c->cd(5);
+  GetHisto(fname, folder,"clusterDeltaRRMS",color,opt,"Cluster #DeltaR RMS");
+  c->cd(6);
+  GetEffHisto(fname, folder,"EtEffNum","EtEffDenom",color,opt,"L2 Jet E_{t}","Efficiency");
+  c->cd(7);
+  GetHisto(fname, folder,"MET",color,opt,"Missing E_{t} [GeV]");
 
-}
-
-L3Val(string fname1,string fname2,string v1,string v2,string folder)
-{
-  GetHistos(fname1,fname2,v1,v2,folder,"L3jetEt","L3 Jet E_{t} [GeV]","n. #tau cands.","L3 Jet E_{t} [GeV]",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L3jetEta","L3 Jet #eta","n. #tau cands.","L3 Jet #eta",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L3EtEff","L3 Jet E_{t} [GeV]","Efficiency","L3 Efficiency vs E_{t}",0,true );
-  GetHistos(fname1,fname2,v1,v2,folder,"L3EtaEff","L3 Efficiency vs #eta","n. #tau cands.","Reco Jet #eta",0,true );
-  GetHistos(fname1,fname2,v1,v2,folder,"L3nPxlTrksInJet","L3 Number of  Silicon Tracks","n. #tau cands.","# Si Tracks in L3 Jet",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L3nQPxlTrksInJet","L3 Number of Quality Si Tracks","n. #tau cands.","# Quality Si. Tracks in L3 Jet",0,false );
-  GetHistos(fname1,fname2,v1,v2,folder,"L3signalLeadTrkPt","L3 Lead Track P_{t}[GeV]","n. #tau cands.","Lead Track P_{t} [GeV]",0,false );
+  //  c->cd(8);
+  // GetHisto(fname, folder,"towerIsolEt",color,opt,"Tower Isol E_{t}");
+  //c->cd(9);
+  //GetHisto(fname, folder,"seedTowerEt",color,opt,"Seed Tower  E_{t}");
  
+
+
+}
+
+L25Val(string fname,string folder,Color_t color,char* opt = "",TCanvas *c)
+{
+  if(opt ==""||opt=="HIST")
+    c->Divide(2,3);
+  c->cd(1);
+  GetHisto(fname,folder,"nPxlTrksInL25Jet",color,opt,"Number of Pixel Tracks");
+  c->cd(2);
+  GetHisto(fname,folder,"nQPxlTrksInL25Jet",color,opt,"Number of Quality Pixel Tracks");
+  c->cd(3);
+  GetHisto(fname,folder,"signalLeadTrkPt",color,opt,"Lead Track P_{t}");
+  c->cd(4);
+  GetEffHisto(fname, folder,"l25IsoJetEt","jetEt",color,opt,"L2 Jet E_{t}","Efficiency");
+  c->cd(5);
+  GetEffHisto(fname, folder,"l25IsoJetEta","jetEta",color,opt,"L25 Jet #eta","Efficiency");
+
+
+
+
 }
 
 
-GetHistos(string f1,string f2,string v1,string v2,string modName,string histo,char* xlabel = "",char *ylabel = "",char *title, double scale = 1,bool eff)
+
+
+
+
+
+GetHisto(string fName,string modName,string histo,Color_t c = kBlue,char* opt ="",char* xlabel = "",char *ylabel = "", double scale = 0)
 {
-  TCanvas *c = new TCanvas;
-  c->cd();
-  TFile *f = new TFile(f1.c_str());
-  TFile *ff = new TFile(f2.c_str());
+  TFile *f = new TFile(fName.c_str());
   
   TH1F *h = ((TH1F*)f->Get((modName+"/"+histo).c_str()))->Clone();
-  TH1F *hh = ((TH1F*)ff->Get((modName+"/"+histo).c_str()))->Clone();
 
-  if(!eff)
-    h->Sumw2();
-
+  h->Sumw2();
+  h->SetLineWidth(2);
   h->GetXaxis()->SetLabelSize(0.06);
-  h->GetXaxis()->SetNdivisions(509);
-  h->GetYaxis()->SetNdivisions(509);
   h->GetYaxis()->SetLabelSize(0.06);
   h->GetXaxis()->SetTitleSize(0.06);
   h->GetYaxis()->SetTitleSize(0.06);
-  h->GetYaxis()->SetTitleOffset(1.25);
 
-   h->SetMarkerColor(kYellow);
+  h->SetLineColor(c);
+  h->SetMarkerColor(c);
   h->SetMarkerStyle(20);
-  h->SetFillColor(kYellow);
+
+  h->SetFillStyle(3001);
+  h->SetFillColor(c);
   h->GetXaxis()->SetTitle(xlabel);
   h->GetYaxis()->SetTitle(ylabel);
-  h->SetTitle(title);
-  if(!eff)
-    {
-      if(scale==0) h->Scale(1/h->Integral());
-      else
-	h->Scale(scale);
-      hh->Sumw2();
-    }
-  hh->GetXaxis()->SetLabelSize(0.06);
-  hh->GetYaxis()->SetLabelSize(0.06);
-  hh->GetXaxis()->SetTitleSize(0.06);
-  hh->GetYaxis()->SetTitleSize(0.06);
-  hh->SetLineColor(kRed);
-  hh->SetMarkerColor(kRed);
-  hh->SetMarkerStyle(20);
-  hh->GetXaxis()->SetTitle(xlabel);
-  hh->GetYaxis()->SetTitle(ylabel);
-  hh->SetTitle(title);
-  if(!eff)
-    {
-      if(scale==0) hh->Scale(1/hh->Integral());
-      else
-	hh->Scale(scale);
-    }
-
-  h->Draw("HIST");
-  hh->Draw("SAME");
-  TLegend *l = new TLegend(0.7,0.5,0.9,0.7);
-  l->AddEntry(h,v1.c_str());
-  l->AddEntry(hh,v2.c_str());
-  l->Draw();
-
-  c->SaveAs((histo+".gif").c_str());
-  delete c;
-   f->Close();
-   ff->Close();
-
+  if(scale==0) h->Scale(1/h->Integral());
+  else
+  h->Scale(scale);
+  
+  h->Draw(opt);
 }
 
 
 
+
+GetEffHisto(string fName,string modName,string histo1,string histo2,Color_t c = kBlue,char* opt ="",char* xlabel = "",char *ylabel = "")
+{
+  TFile *f = new TFile(fName.c_str());
+  
+  TH1F *h1 = (TH1F*)f->Get((modName+"/"+histo1).c_str());
+  TH1F *h2 = (TH1F*)f->Get((modName+"/"+histo2).c_str());
+
+  TH1F *h =h1->Clone();
+  TH1F *h11 = h1->Clone();
+  TH1F *h21 = h2->Clone();
+
+  h11->Sumw2();
+  h21->Sumw2();
+
+
+  h->Divide(h11,h21,1.,1.,"b");
+
+
+  h->GetXaxis()->SetLabelSize(0.06);
+  h->GetYaxis()->SetLabelSize(0.06);
+  h->GetXaxis()->SetTitleSize(0.06);
+  h->GetYaxis()->SetTitleSize(0.06);
+  
+  h->SetLineColor(kBlack);
+  h->SetLineWidth(2);
+  h->SetMarkerColor(c);
+  h->SetMarkerStyle(20);
+
+    //  h->SetFillStyle(3001);
+    // h->SetFillColor(c);
+  h->GetXaxis()->SetTitle(xlabel);
+  h->GetYaxis()->SetTitle(ylabel);
+
+
+  if(opt == "HIST") opt ="";
+  h->Draw(opt);
+}
 

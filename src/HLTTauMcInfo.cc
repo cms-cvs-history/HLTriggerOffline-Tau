@@ -4,6 +4,7 @@
 #include "DataFormats/TauReco/interface/PFTau.h"
 #include "DataFormats/TauReco/interface/PFTauDiscriminatorByIsolation.h"
 #include "SimDataFormats/HepMCProduct/interface/HepMCProduct.h"
+#include "DataFormats/HepMCCandidate/interface/GenParticleCandidate.h"
 
 using namespace edm;
 using namespace reco;
@@ -110,7 +111,7 @@ void HLTTauMcInfo::produce(edm::Event& iEvent, const edm::EventSetup& iES)
       Handle<PFTauDiscriminatorByIsolation> thePFTauDiscriminatorByIsolation;
       iEvent.getByLabel(pfTauDiscriminatorProd_,thePFTauDiscriminatorByIsolation);
 
-      for(size_t it =0; it<product_Jets_tmp.size();it++)
+      for(int it =0; it<product_Jets_tmp.size();it++)
 	{ 
 	  for (PFTauCollection::size_type iPFTau=0;iPFTau<thePFTauHandle->size();iPFTau++) {
 	    PFTauRef thePFTau(thePFTauHandle,iPFTau);
@@ -124,7 +125,7 @@ void HLTTauMcInfo::produce(edm::Event& iEvent, const edm::EventSetup& iES)
 	}
       
     }else{
-      for(size_t it =0; it<product_Jets_tmp.size();it++)
+      for(int it =0; it<product_Jets_tmp.size();it++)
 	{ 
 	  product_Jets->push_back(product_Jets_tmp[it]);
 	}

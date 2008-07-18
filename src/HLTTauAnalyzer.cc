@@ -32,9 +32,8 @@ HLTTauAnalyzer::HLTTauAnalyzer(const edm::ParameterSet& iConfig):
  mcDeltaRLep        ( iConfig.getParameter<double>              ("mcDeltaRLep")              ),
 
  l1TauTrigger       ( iConfig.getParameter<std::string>         ("l1TauTrigger")             ),
- metReco            ( iConfig.getParameter<edm::InputTag>       ("HLTMETFilter")             ),
  usingMET           ( iConfig.getParameter<bool>                ("UsingMET")                 ),
-
+ metReco            ( iConfig.getParameter<edm::InputTag>       ("HLTMETFilter")             ),
  l2TauJets          ( iConfig.getParameter<VInputTag>           ("l2TauJets")                ),
  l2TauJetsFiltered  ( iConfig.getParameter<VInputTag>           ("l2TauJetsFiltered")        ),
  l25TauJets         ( iConfig.getParameter<VInputTag>           ("l25TauJets")               ),
@@ -547,10 +546,9 @@ void HLTTauAnalyzer::endJob()
 
 //------------------------------------------------------------------------------------------------------------------
 
-void HLTTauAnalyzer::ComputeEfficiency( const int Den, const int Num, float& Eff, float& EffErr )
+void HLTTauAnalyzer::ComputeEfficiency( const int Den, const int Num, float & Eff, float & EffErr )
 {
-  Eff =0.;
- EffErr = 0.;
+ Eff = EffErr = 0.;
  if( Den == 0 ) { cout << "Error: cannot compute efficiency, denominator = 0 !" << endl; return; }
  
  Eff    = 1.*Num/Den;
