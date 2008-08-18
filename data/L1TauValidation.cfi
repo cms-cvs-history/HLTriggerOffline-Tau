@@ -26,7 +26,7 @@ module L1TauValidation = L1TauValidation {
     string L1IsoEGTauName  = "L1_IsoEG10_TauJet20"
 
     double L1MCTauMinDeltaR = 0.5
-    double MCTauHadMinEt = 15.
+    double MCTauHadMinEt = 10.
     double MCTauHadMaxAbsEta = 2.5
 
     string   TriggerTag            =  "L1Plots"
