@@ -1,6 +1,0 @@
-module TauRefCombiner = HLTTauRefCombiner{
-
-	VInputTag InputCollections = {TauRefInfoProducer:MCTaus, TauRefInfoProducer:PFTaus}
-	double MatchDeltaR         = 0.3
-	string OutputCollection    = "GoodTaus" 
-}
